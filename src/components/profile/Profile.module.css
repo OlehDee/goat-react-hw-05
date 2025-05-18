@@ -1,0 +1,67 @@
+.Container {
+    width: 304px;
+    margin: 48px auto;
+    border: 1px solid black;
+    border-radius: 24px;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    text-align: center;
+}
+
+.Head {
+    margin: 0;
+    border-radius: 24px 24px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 18px;
+}
+
+.Image {
+    width: 120px;
+    height: 120px;
+    background-color: rgba(46, 38, 38, 0.955);
+    border-radius: 50%;
+}
+
+.Name {
+    font-weight: 900;
+    font-size: 24px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.Tag {
+    color: rgba(35, 35, 35, 0.666);
+}
+
+.Location {
+    color: rgba(35, 35, 35, 0.666);
+}
+
+.Information {
+    border-radius: 0 0 24px 24px;
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.InformationItem {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    row-gap: 6px;
+    color: black;
+    border-top: 1px solid gray;
+    padding: 6px;
+    background-color: rgb(231, 228, 228);
+}
+
+.integer {
+    color: rgb(0, 0, 0);
+}
