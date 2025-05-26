@@ -8,24 +8,27 @@ export default function HomePage() {
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        async function getTrend() {
+        async function getTrends() {
             try {
                 setError(false);
                 setTrends([]);
-                const data = await fetchTrend();
+                const data = await fetchTrends();
                 setTrends(data.data.results);
             } catch {
                 setError(true);
             }
         }
-        getTrend();
+        getTrends();
     }, []);
 
     return (
         <div className={css.container}>
-            <h1 className={css.page_title}>Популярне сьогодні</h1>
-            {!error ? <MovieList data={trends} /> : <p>Щось пішло не так :/</p>}
-
+            <h1 className={css.page_title}>Popular Today</h1>
+            {!error ? (
+                <MovieList movies={trends} />
+            ) : (
+                <p>Something went wrong</p>
+            )}
         </div>
     );
 }

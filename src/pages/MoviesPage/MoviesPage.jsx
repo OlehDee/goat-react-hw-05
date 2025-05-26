@@ -7,32 +7,33 @@ import { Outlet, useSearchParams } from "react-router-dom";
 
 export default function MoviesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const mainParam = searchParams.get("qwery");
-  const [keyWord, setKeyWord] = useState(() => mainParam || "");
+  const mainParam = searchParams.get("query");
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(false);
 
   function submitHandler(data) {
     const searchValue = data.search.trim();
-    setKeyWord(searchValue);
-    setSearchParams({ qwery: searchValue });
+    if (searchValue) {
+      setSearchParams({ query: searchValue });
+    }
   }
 
   useEffect(() => {
-    if (!keyWord) return; // Додаємо перевірку на порожнє ключове слово
+    if (!mainParam) return;
 
     async function getInfo() {
       try {
         setError(false);
         setFilms([]);
-        const data = await fetchByQuery(keyWord);
-        setFilms(data.results || []); // Додаємо перевірку на наявність results
+        const data = await fetchByQuery(mainParam);
+        setFilms(data.results || []);
       } catch (error) {
         setError(true);
       }
     }
+
     getInfo();
-  }, [keyWord]);
+  }, [mainParam]);
 
   const initialValues = { search: mainParam || "" };
 
@@ -46,14 +47,14 @@ export default function MoviesPage() {
               name="search"
               placeholder="Enter here..."
               autoComplete="off"
-            ></Field>
+            />
             <button className={css.btn} type="submit">
               Search
             </button>
           </Form>
         </Formik>
       </div>
-      {!error && <MovieList data={films}></MovieList>}
+      {!error && <MovieList movies={films} />}
       {error && <p>Something went wrong. Please try again later.</p>}
       <Outlet />
     </>
